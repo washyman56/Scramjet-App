@@ -1,5 +1,6 @@
 const form = document.getElementById("sj-form");
 const address = document.getElementById("sj-address");
+const searchEngine = document.getElementById("sj-search-engine");
 const frameWrapper = document.getElementById("sj-frame-wrapper");
 const frameElement = document.getElementById("sj-frame");
 const frameUrl = document.getElementById("sj-frame-url");
@@ -30,13 +31,44 @@ function showErrorScreen(error, details) {
 	errorCode.textContent = details;
 }
 
-async function navigate(url) {
+function isWebUrl(value) {
+	try {
+		const url = new URL(
+			value.includes("://") ? value : `https://${value}`,
+		);
+		return (
+			["http:", "https:"].includes(url.protocol) &&
+			(/^https?:\/\//i.test(value) ||
+				url.hostname === "localhost" ||
+				url.hostname.includes(".") ||
+				url.hostname.includes(":"))
+		);
+	} catch {
+		return false;
+	}
+}
+
+function formatSearchUrl(query) {
+	const template =
+		searchEngine.value || "https://duckduckgo.com/?q=%s";
+	return template.replace("%s", encodeURIComponent(query));
+}
+
+async function navigate(input) {
 	if (!frame || !controller) {
 		await init();
 	}
-	if (!url.startsWith("http")) {
-		url = `https://${url}`;
+
+	const value = input.trim();
+	if (!value) {
+		return;
 	}
+
+	const url = isWebUrl(value)
+		? /^https?:\/\//i.test(value)
+			? value
+			: `https://${value}`
+		: formatSearchUrl(value);
 	await frame.go(url);
 	frameWrapper.style.display = "flex";
 }
