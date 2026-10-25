@@ -12,6 +12,7 @@
 	"author": "",
 	"license": "AGPL-3.0-only",
 	"dependencies": {
+		"@mercuryworkshop/epoxy-transport": "^3.0.1",
 		"@mercuryworkshop/proxy-bootstrap": "*",
 		"express": "^4.21.2"
 	},
