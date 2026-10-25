@@ -10,7 +10,7 @@ LABEL description="Example application of Scramjet"
 
 WORKDIR /app
 
-COPY ["package.json", "package-lock.json", "./"]
+COPY ["package.json", "package-lock.json*", "pnpm-lock.yaml*", "bun.lockb*", "./"]
 RUN apk add --upgrade --no-cache python3 make g++
 RUN $NPM_BUILD
 
