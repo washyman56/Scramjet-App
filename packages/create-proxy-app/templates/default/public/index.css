@@ -173,3 +173,242 @@ footer a:hover {
 	white-space: nowrap;
 	text-wrap: nowrap;
 }
+
+/* Home-page theme */
+:root {
+	color-scheme: dark;
+}
+
+body {
+	font-family: "Roboto", Arial, sans-serif;
+	min-width: 320px;
+	background:
+		radial-gradient(circle at 50% 5%, #263c70 0, transparent 35rem),
+		radial-gradient(circle at 4% 90%, #18234c 0, transparent 30rem), #090b12;
+	color: #f6f7fb;
+}
+
+.home-shell {
+	width: min(100% - 40px, 1060px);
+	min-height: 100vh;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+}
+
+.site-header {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 28px 0;
+}
+
+.brand-mark {
+	display: grid;
+	place-items: center;
+	width: 34px;
+	height: 34px;
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	border-radius: 10px;
+	background: linear-gradient(145deg, #7190ff, #4861e6);
+	box-shadow: 0 10px 25px rgba(51, 78, 195, 0.38);
+	font-weight: 700;
+}
+
+.site-header h1 {
+	margin: 0;
+	font-size: 16px;
+	letter-spacing: -0.03em;
+}
+
+.hero {
+	width: min(100%, 720px);
+	margin: auto;
+	padding: 64px 0 106px;
+	text-align: center;
+}
+
+.eyebrow {
+	margin: 0 0 18px;
+	color: #a9baf5;
+	font-size: 12px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.hero h2 {
+	margin: 0;
+	font-size: clamp(44px, 8vw, 76px);
+	line-height: 0.98;
+	letter-spacing: -0.075em;
+}
+
+.hero-copy {
+	max-width: 470px;
+	margin: 24px auto 36px;
+	color: #b7bdce;
+	font-size: 16px;
+	line-height: 1.65;
+}
+
+.search-form {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 8px 8px 8px 20px;
+	border: 1px solid rgba(180, 195, 255, 0.22);
+	border-radius: 18px;
+	background: rgba(17, 22, 37, 0.78);
+	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.26);
+	transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.search-form:focus-within {
+	border-color: #829dff;
+	box-shadow: 0 0 0 4px rgba(105, 136, 255, 0.15), 0 20px 60px rgba(0, 0, 0, 0.26);
+}
+
+.search-icon {
+	width: 20px;
+	height: 20px;
+	flex: 0 0 auto;
+	fill: none;
+	stroke: #9aa5c7;
+	stroke-linecap: round;
+	stroke-width: 2;
+}
+
+#sj-address {
+	min-width: 0;
+	flex: 1;
+	width: auto;
+	height: 48px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+	outline: 0;
+	background: transparent;
+	color: #fff;
+	font-size: 15px;
+}
+
+#sj-address::placeholder {
+	color: #8992ad;
+	opacity: 1;
+}
+
+.search-form button {
+	min-width: 62px;
+	height: 48px;
+	border: 0;
+	border-radius: 12px;
+	background: #6d89ff;
+	color: #fff;
+	cursor: pointer;
+	font: inherit;
+	font-size: 14px;
+	font-weight: 700;
+	transition: background 160ms ease, transform 160ms ease;
+}
+
+.search-form button:hover {
+	background: #88a0ff;
+	transform: translateY(-1px);
+}
+
+.search-note {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	margin-top: 17px;
+	color: #7f89a6;
+	font-size: 12px;
+}
+
+.status-dot {
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	background: #77d2a3;
+	box-shadow: 0 0 0 4px rgba(119, 210, 163, 0.1);
+}
+
+.error-panel:empty {
+	display: none;
+}
+
+.error-panel #sj-error {
+	margin: 18px 0 0;
+	color: #ff9c9c !important;
+}
+
+.error-panel #sj-error-code {
+	max-height: 150px;
+	margin: 10px 0 0;
+	overflow: auto;
+	text-align: left;
+	white-space: pre-wrap;
+}
+
+.error-panel #sj-error:empty,
+.error-panel #sj-error-code:empty {
+	display: none;
+}
+
+.home-shell footer {
+	margin: 0;
+	padding: 25px 0 28px;
+	display: flex;
+	align-items: center;
+	gap: 18px;
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	color: #7f89a6;
+	font-size: 12px;
+}
+
+.home-shell footer a,
+.home-shell footer span {
+	margin: 0;
+	color: #aeb8d6;
+	font-size: 12px;
+}
+
+.home-shell footer a:hover {
+	color: #fff;
+	text-decoration: none;
+}
+
+.footer-copy {
+	margin-left: auto !important;
+}
+
+@media (max-width: 560px) {
+	.home-shell {
+		width: min(100% - 28px, 1060px);
+	}
+
+	.hero {
+		padding: 44px 0 78px;
+	}
+
+	.search-form {
+		padding-left: 14px;
+		border-radius: 15px;
+	}
+
+	.search-form button {
+		min-width: 52px;
+	}
+
+	.home-shell footer {
+		flex-wrap: wrap;
+		gap: 14px;
+	}
+
+	.footer-copy {
+		width: 100%;
+		margin-left: 0 !important;
+	}
+}

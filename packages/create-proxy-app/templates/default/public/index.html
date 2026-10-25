@@ -31,31 +31,47 @@
 		<script src="/bootstrap-init.js"></script>
 	</head>
 	<body>
-		<div title="Scramjet Logo" class="flex-center logo-wrapper header-center">
-			<h1>Proxy App Template</h1>
-		</div>
-		<div class="flex-center desc left-margin">
-			<p>
-				Congratulations! You've successfully created a web proxy powered by
-				Scramjet and Wisp. Your proxy is now ready to be customized by editing
-				the public/index.html file.
-			</p>
-		</div>
-
-		<form id="sj-form" class="flex-center">
-			<input
-				id="sj-search-engine"
-				value="https://duckduckgo.com/?q=%s"
-				type="hidden"
-			/>
-			<input id="sj-address" type="text" placeholder="Search the web freely" />
-		</form>
-		<div class="desc left-margin">
-			<p id="sj-error"></p>
-			<pre id="sj-error-code"></pre>
-		</div>
-		<footer>
-			<div>
+		<main class="home-shell">
+			<header class="site-header">
+				<div class="brand-mark" aria-hidden="true">S</div>
+				<!-- Edit the title below to name your proxy. -->
+				<h1>WashyHub -- Private Browsing</h1>
+			</header>
+			<section class="hero" aria-labelledby="home-heading">
+				<p class="eyebrow">Private browsing, your way</p>
+				<h2 id="home-heading">Go anywhere.</h2>
+				<p class="hero-copy">
+					Enter a URL or search the web from one focused, private workspace.
+				</p>
+				<form id="sj-form" class="search-form">
+					<input
+						id="sj-search-engine"
+						value="https://duckduckgo.com/?q=%s"
+						type="hidden"
+					/>
+					<svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+						<circle cx="11" cy="11" r="6"></circle>
+						<path d="m16 16 4 4"></path>
+					</svg>
+					<input
+						id="sj-address"
+						type="text"
+						placeholder="Search or enter a web address"
+						autocomplete="off"
+						spellcheck="false"
+					/>
+					<button type="submit">Go</button>
+				</form>
+				<div class="search-note">
+					<span class="status-dot" aria-hidden="true"></span>
+					Powered by Scramjet and Wisp
+				</div>
+				<div class="error-panel" aria-live="polite">
+					<p id="sj-error"></p>
+					<pre id="sj-error-code"></pre>
+				</div>
+			</section>
+			<footer>
 				<a
 					title="The Mercury Workshop GitHub organization"
 					href="https://github.com/MercuryWorkshop"
@@ -67,11 +83,9 @@
 					>GitHub</a
 				>
 				<a title="License information" href="credits.html">Credits</a>
-			</div>
-			<div>
-				<span>Scramjet &copy; MW 2025</span>
-			</div>
-		</footer>
+				<span class="footer-copy">Scramjet &copy; MW 2025</span>
+			</footer>
+		</main>
 
 		<div id="sj-frame-wrapper">
 			<p id="sj-frame-url"></p>
