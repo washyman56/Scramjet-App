@@ -1,74 +1,58 @@
-<p align="center"><img src="https://raw.githubusercontent.com/MercuryWorkshop/scramjet/main/assets/scramjet.png" height="200"></p>
+<h1 align="center">Scramjet</h1>
+<div align="center">
+  <img src="assets/scramjet.png" height="200" />
+</div>
 
-<h1 align="center">Scramjet Demo</h1>
+<div align="center">
+  <a href="https://www.npmjs.com/package/@mercuryworkshop/scramjet"><img src="https://img.shields.io/npm/v/@mercuryworkshop/scramjet.svg?maxAge=3600" alt="npm version" /></a>
+  <img src="https://img.shields.io/github/issues/MercuryWorkshop/scramjet?style=flat&color=orange" />
+  <img src="https://img.shields.io/github/stars/MercuryWorkshop/scramjet?style=flat&color=orange" />
+</div>
 
-The demo implementation of <a href="https://github.com/MercuryWorkshop/scramjet">Scramjet</a>, the most advanced web proxy.
+---
 
-<a href="https://github.com/MercuryWorkshop/scramjet">Scramjet</a> is an experimental interception based web proxy designed with security, developer friendliness, and performance in mind. This project is made to evade internet censorship and bypass arbitrary web browser restrictions.
-
-#### Refer to <a href="https://github.com/HeyPuter/browser.js">browser.js</a> where this project will now receive updates outside of just bypassing internet censorship.
+Scramjet is an experimental interception-based web proxy designed to evade internet censorship and bypass arbitrary browser restrictions.<br><br>
+Scramjet allows you to sandbox arbitrary web content, bypass CORS restrictions on loading websites, and instrument and debug websites inside the browser itself. This is accomplished through a combination of interception, rewriting, and sandboxing techniques. You can learn more about the technical details <a href="https://developer.puter.com/blog/how-I-ported-the-web-to-the-web/"><strong>here</strong></a>.<br><br>
 
 ## Supported Sites
 
-Scramjet has CAPTCHA support! Some of the popular websites that Scramjet supports include:
+Some of the popular websites that Scramjet supports include:
 
 - [Google](https://google.com)
-- [Twitter](https://twitter.com)
-- [Instagram](https://instagram.com)
 - [Youtube](https://youtube.com)
-- [Spotify](https://spotify.com)
-- [Discord](https://discord.com)
+- [Instagram](https://instagram.com)
+- [ChatGPT](https://chatgpt.com)
 - [Reddit](https://reddit.com)
+- [Twitter](https://twitter.com)
+- [Discord](https://discord.com)
+- [Spotify](https://spotify.com)
 - [GeForce NOW](https://play.geforcenow.com/)
+- [now.gg](https://now.gg)
 
-Ensure you are not hosting on a datacenter IP for CAPTCHAs to work reliably along with YouTube. Heavy amounts of traffic will make some sites NOT work on a single IP. Consider rotating IPs or routing through Wireguard using a project like <a href="https://github.com/whyvl/wireproxy">wireproxy</a>.
+## Development
 
-## Setup / Usage
+### Dependencies
 
-You will need Node.js 16.x (and above) and Git installed; below is an example for Debian/Ubuntu setup.
+- Recent versions of `node.js` and `pnpm`
+- `rustup`
+- `wasm-bindgen`
+- [Binaryen's `wasm-opt`](https://github.com/WebAssembly/binaryen)
+- [this `wasm-snip` fork](https://github.com/r58Playz/wasm-snip)
 
-```
-sudo apt update
-sudo apt upgrade
-sudo apt install curl git nginx
+#### Building
 
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+- Clone the repository with `git clone --recursive https://github.com/MercuryWorkshop/scramjet`
+- Install the dependencies with `pnpm i`
+- Change directories with `cd packages/core`
+- Build the rewriter with `pnpm rewriter:build`
+- Build Scramjet with `pnpm build`
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+### Running Scramjet Locally
 
-nvm install 20
-nvm use 20
+You can run the Scramjet dev server when running this command at the root
 
-git clone https://github.com/MercuryWorkshop/Scramjet-App
-cd Scramjet-App
-```
-
-Install dependencies
-
-```
-pnpm install
+```sh
+pnpm dev
 ```
 
-Run the server
-
-```
-pnpm start
-```
-
-Resources for self-hosting:
-
-- https://github.com/nvm-sh/nvm
-- https://docs.titaniumnetwork.org/guides/nginx/
-- https://docs.titaniumnetwork.org/guides/vps-hosting/
-- https://docs.titaniumnetwork.org/guides/dns-setup/
-
-### HTTP Transport
-
-The example uses [libcurl-transport](https://github.com/MercuryWorkshop/libcurl-transport) to fetch proxied data encrypted.
-
-You may also want to use [epoxy-transport](https://github.com/MercuryWorkshop/epoxy-transport), a different way of fetching encrypted data.
-
-This example also now uses [wisp-js/server](https://www.npmjs.com/package/@mercuryworkshop/wisp-js) instead of the now outdated wisp-server-node. Please note that this can also be replaced with other wisp implementations like [wisp-server-python](https://github.com/MercuryWorkshop/wisp-server-python) which is highly recommended for production.
-
-See the [bare-mux](https://github.com/MercuryWorkshop/bare-mux) documentation for more information.
+The demo page for scramjet should now be running at <http://localhost:4141> and should rebuild upon a file being changed (excluding the rewriter).
