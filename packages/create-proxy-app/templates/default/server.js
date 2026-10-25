@@ -14,14 +14,14 @@ app.use((req, res, next) => {
     next();
 });
 
-// Use an absolute path so public assets always load correctly
+// Serve your public folder using absolute path resolution
 app.use(express.static(path.join(__dirname, "public")));
 
 const server = http.createServer(app);
 
 server.on("upgrade", routeUpgrade);
 
-// Dynamically use Render's assigned port, fallback to 3030 locally
+// Dynamically use Render's PORT environment variable
 const PORT = process.env.PORT || 3030;
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
