@@ -50,7 +50,7 @@ function isWebUrl(value) {
 
 function formatSearchUrl(query) {
 	const template =
-		searchEngine.value || "https://lite.duckduckgo.com/lite/?q=%s";
+		searchEngine.value || "www.startpage.com/sp/search?q=%s";
 	return template.replace("%s", encodeURIComponent(query));
 }
 
