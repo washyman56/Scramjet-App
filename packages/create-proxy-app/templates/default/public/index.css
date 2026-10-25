@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
 
 body {
 	font-family: "Roboto", Arial, Helvetica, sans-serif;
@@ -180,7 +180,7 @@ footer a:hover {
 }
 
 body {
-	font-family: "Roboto", Arial, sans-serif;
+	font-family: "Plus Jakarta Sans", Arial, sans-serif;
 	min-width: 320px;
 	background:
 		radial-gradient(circle at 50% 5%, #263c70 0, transparent 35rem),
@@ -217,6 +217,7 @@ body {
 
 .site-header h1 {
 	margin: 0;
+	font-family: "Outfit", sans-serif;
 	font-size: 16px;
 	letter-spacing: -0.03em;
 }
@@ -238,6 +239,7 @@ body {
 
 .hero h2 {
 	margin: 0;
+	font-family: "Outfit", sans-serif;
 	font-size: clamp(44px, 8vw, 76px);
 	line-height: 0.98;
 	letter-spacing: -0.075em;
@@ -384,6 +386,103 @@ body {
 	margin-left: auto !important;
 }
 
+/* Inspired by the glass dashboard treatment in the supplied Study Notes reference. */
+.site-header {
+	justify-content: space-between;
+	padding: 15px 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.brand {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.brand-mark {
+	background: linear-gradient(135deg, #818cf8 0%, #6366f1 50%, #38bdf8 100%);
+	box-shadow: 0 0 22px rgba(129, 140, 248, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.site-header h1 {
+	background: linear-gradient(135deg, #e2e8f0, #818cf8);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.nav-status {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	padding: 7px 10px;
+	border: 1px solid rgba(52, 211, 153, 0.2);
+	border-radius: 8px;
+	background: rgba(52, 211, 153, 0.08);
+	color: #8de6bb;
+	font-size: 11px;
+	font-weight: 600;
+}
+
+.nav-status span {
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: #34d399;
+	box-shadow: 0 0 8px rgba(52, 211, 153, 0.8);
+}
+
+.hero h2 {
+	background: linear-gradient(135deg, #f1f5f9 20%, #818cf8 60%, #38bdf8 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.search-form {
+	border-color: rgba(255, 255, 255, 0.07);
+	border-radius: 16px;
+	background: rgba(14, 19, 32, 0.7);
+	backdrop-filter: blur(12px);
+}
+
+.search-form:focus-within {
+	border-color: rgba(99, 102, 241, 0.5);
+	box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2), 0 20px 60px rgba(0, 0, 0, 0.26);
+}
+
+.search-form button {
+	background: linear-gradient(135deg, #818cf8, #6366f1);
+	box-shadow: 0 4px 14px rgba(99, 102, 241, 0.25);
+}
+
+.feature-row {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 10px;
+	margin-top: 32px;
+}
+
+.feature-card {
+	padding: 13px 10px;
+	border: 1px solid rgba(255, 255, 255, 0.07);
+	border-radius: 12px;
+	background: rgba(14, 19, 32, 0.55);
+	color: #94a3b8;
+	font-size: 11px;
+	font-weight: 600;
+	transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.feature-card:hover {
+	border-color: rgba(129, 140, 248, 0.3);
+	transform: translateY(-2px);
+}
+
+.feature-card span {
+	margin-right: 5px;
+	color: #818cf8;
+	font-size: 14px;
+}
+
 @media (max-width: 560px) {
 	.home-shell {
 		width: min(100% - 28px, 1060px);
@@ -400,6 +499,15 @@ body {
 
 	.search-form button {
 		min-width: 52px;
+	}
+
+	.nav-status {
+		display: none;
+	}
+
+	.feature-row {
+		grid-template-columns: 1fr;
+		gap: 7px;
 	}
 
 	.home-shell footer {
