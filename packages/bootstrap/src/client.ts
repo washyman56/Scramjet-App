@@ -21,7 +21,10 @@ export async function loadRest(sw: ServiceWorker, cfg: BootstrapOptions) {
 	if (cfg.transport === "epoxy") {
 		await loadScript(cfg.epoxyClientPath);
 		const EpoxyCtor: typeof EpoxyClient = (window as any).EpoxyTransport
-			.EpoxyClient;
+			.default ?? (window as any).EpoxyTransport.EpoxyClient;
+		if (typeof EpoxyCtor !== "function") {
+			throw new Error("Epoxy transport client did not load correctly");
+		}
 		transport = new EpoxyCtor({ wisp: resolvedWispPath });
 	} else if (cfg.transport === "libcurl") {
 		await loadScript(cfg.libcurlClientPath);
