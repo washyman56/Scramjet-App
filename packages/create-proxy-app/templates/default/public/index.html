@@ -47,11 +47,14 @@
 					Enter a URL or search the web from one focused, private workspace.
 				</p>
 				<form id="sj-form" class="search-form">
-					<input
-						id="sj-search-engine"
-						value="https://duckduckgo.com/?q=%s"
-						type="hidden"
-					/>
+					<label class="search-engine-label" for="sj-search-engine">
+						Search with
+					</label>
+					<select id="sj-search-engine" aria-label="Search engine">
+						<option value="https://www.google.com/search?q=%s">Google</option>
+						<option value="https://duckduckgo.com/?q=%s">DuckDuckGo</option>
+					</select>
+					<!-- The selected engine's %s placeholder is replaced with the encoded query. -->
 					<svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
 						<circle cx="11" cy="11" r="6"></circle>
 						<path d="m16 16 4 4"></path>

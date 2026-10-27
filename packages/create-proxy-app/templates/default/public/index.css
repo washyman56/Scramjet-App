@@ -280,6 +280,29 @@ body {
 	stroke-width: 2;
 }
 
+.search-engine-label {
+	color: #8992ad;
+	font-size: 11px;
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+#sj-search-engine {
+	max-width: 118px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 8px;
+	outline: 0;
+	background: rgba(255, 255, 255, 0.05);
+	color: #c6cde1;
+	font: inherit;
+	font-size: 11px;
+	padding: 8px 24px 8px 9px;
+}
+
+#sj-search-engine:focus {
+	border-color: #829dff;
+}
+
 #sj-address {
 	min-width: 0;
 	flex: 1;
@@ -499,6 +522,14 @@ body {
 
 	.search-form button {
 		min-width: 52px;
+	}
+
+	.search-engine-label {
+		display: none;
+	}
+
+	#sj-search-engine {
+		max-width: 98px;
 	}
 
 	.nav-status {

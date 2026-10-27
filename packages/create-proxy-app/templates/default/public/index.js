@@ -7,6 +7,23 @@ const frameUrl = document.getElementById("sj-frame-url");
 const error = document.getElementById("sj-error");
 const errorCode = document.getElementById("sj-error-code");
 
+const SEARCH_ENGINES = new Set([
+	"https://www.google.com/search?q=%s",
+	"https://duckduckgo.com/?q=%s",
+]);
+
+try {
+	const savedSearchEngine = localStorage.getItem("sj-search-engine");
+	if (SEARCH_ENGINES.has(savedSearchEngine)) {
+		searchEngine.value = savedSearchEngine;
+	}
+	searchEngine.addEventListener("change", () => {
+		localStorage.setItem("sj-search-engine", searchEngine.value);
+	});
+} catch {
+	// Browsing still works when storage is unavailable or disabled.
+}
+
 let controller;
 let frame;
 async function init() {
@@ -25,9 +42,9 @@ async function init() {
 	});
 }
 
-function showErrorScreen(error, details) {
+function showErrorScreen(message, details) {
 	frameWrapper.style.display = "none";
-	error.textContent = error;
+	error.textContent = message;
 	errorCode.textContent = details;
 }
 
@@ -50,7 +67,7 @@ function isWebUrl(value) {
 
 function formatSearchUrl(query) {
 	const template =
-		searchEngine.value || "www.startpage.com/sp/search?q=%s";
+		searchEngine.value || "https://www.google.com/search?q=%s";
 	return template.replace("%s", encodeURIComponent(query));
 }
 
