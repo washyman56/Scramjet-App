@@ -25,19 +25,21 @@ body {
 }
 
 #sj-frame-wrapper {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+	width: 100%;
+	height: 100dvh;
 	display: none;
 	flex-direction: column;
+	background: #090b12;
 }
 
 #sj-frame {
 	border: none;
 	flex: 1;
-	background-color: #111;
+	min-height: 0;
+	background-color: #fff;
 }
 
 #sj-error {
@@ -165,13 +167,48 @@ footer a:hover {
 }
 
 #sj-frame-url {
-	color: #fff;
-	margin: 0.25em;
+	margin: 0;
+	min-width: 0;
+	padding: 0 10px;
+	color: #b8c1dd;
 	font-family: monospace;
+	font-size: 12px;
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
 	text-wrap: nowrap;
+}
+
+.proxy-toolbar {
+	display: flex;
+	align-items: center;
+	min-height: 46px;
+	padding: 6px 10px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	background: #111624;
+}
+
+.proxy-navigation {
+	display: flex;
+	gap: 6px;
+}
+
+.proxy-navigation button {
+	width: 30px;
+	height: 30px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 7px;
+	background: rgba(255, 255, 255, 0.05);
+	color: #c7d0e9;
+	cursor: pointer;
+	font-size: 17px;
+	line-height: 1;
+}
+
+.proxy-navigation button:hover {
+	border-color: rgba(129, 140, 248, 0.5);
+	background: rgba(129, 140, 248, 0.18);
+	color: #fff;
 }
 
 /* Home-page theme */

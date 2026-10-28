@@ -4,6 +4,8 @@ const searchEngine = document.getElementById("sj-search-engine");
 const frameWrapper = document.getElementById("sj-frame-wrapper");
 const frameElement = document.getElementById("sj-frame");
 const frameUrl = document.getElementById("sj-frame-url");
+const backButton = document.getElementById("sj-back");
+const forwardButton = document.getElementById("sj-forward");
 const error = document.getElementById("sj-error");
 const errorCode = document.getElementById("sj-error-code");
 
@@ -26,6 +28,10 @@ try {
 
 let controller;
 let frame;
+
+backButton.addEventListener("click", () => frame?.back());
+forwardButton.addEventListener("click", () => frame?.forward());
+
 async function init() {
 	controller = await initBootstrap();
 

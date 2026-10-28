@@ -4,11 +4,12 @@ import vm from "node:vm";
 
 const SCRIPT_PATH = "packages/create-proxy-app/templates/default/public/index.js";
 const HTML_PATH = "packages/create-proxy-app/templates/default/public/index.html";
+const CSS_PATH = "packages/create-proxy-app/templates/default/public/index.css";
 
 function loadTemplate({ navigationError, storage = new Map() } = {}) {
 	const listeners = new Map();
 	const elements = new Map(
-		["sj-form", "sj-address", "sj-search-engine", "sj-frame-wrapper", "sj-frame", "sj-frame-url", "sj-error", "sj-error-code"].map(
+		["sj-form", "sj-address", "sj-search-engine", "sj-frame-wrapper", "sj-frame", "sj-frame-url", "sj-back", "sj-forward", "sj-error", "sj-error-code"].map(
 			(id) => [
 				id,
 				{
@@ -26,11 +27,14 @@ function loadTemplate({ navigationError, storage = new Map() } = {}) {
 		)
 	);
 	const destinations = [];
+	const navigationActions = [];
 	const frame = {
 		go: async (url) => {
 			destinations.push(url);
 			if (navigationError) throw navigationError;
 		},
+		back: () => navigationActions.push("back"),
+		forward: () => navigationActions.push("forward"),
 	};
 	const context = {
 		URL,
@@ -51,7 +55,7 @@ function loadTemplate({ navigationError, storage = new Map() } = {}) {
 	};
 
 	vm.runInNewContext(readFileSync(SCRIPT_PATH, "utf8"), context);
-	return { elements, listeners, destinations, storage };
+	return { elements, listeners, destinations, navigationActions, storage };
 }
 
 async function submit(template, value) {
@@ -78,6 +82,16 @@ test("proxy template navigates a domain directly", async (t) => {
 	await submit(template, "example.com/path");
 
 	t.deepEqual(template.destinations, ["https://example.com/path"]);
+});
+
+test("proxy template routes toolbar buttons to the frame history", async (t) => {
+	const template = loadTemplate();
+	await submit(template, "example.com");
+
+	template.listeners.get("sj-back:click")();
+	template.listeners.get("sj-forward:click")();
+
+	t.deepEqual(template.navigationActions, ["back", "forward"]);
 });
 
 test("proxy template supports and saves DuckDuckGo as a search engine", async (t) => {
@@ -111,4 +125,16 @@ test("proxy template offers Google and DuckDuckGo search endpoints", (t) => {
 
 	t.regex(html, /value="https:\/\/www\.google\.com\/search\?q=%s"/);
 	t.regex(html, /value="https:\/\/duckduckgo\.com\/\?q=%s"/);
+});
+
+test("proxy template keeps its browser frame above the home page", (t) => {
+	const html = readFileSync(HTML_PATH, "utf8");
+	const css = readFileSync(CSS_PATH, "utf8");
+
+	t.regex(html, /id="sj-back"/);
+	t.regex(html, /id="sj-forward"/);
+	t.regex(
+		css,
+		/#sj-frame-wrapper\s*\{[^}]*position:\s*fixed;[^}]*z-index:\s*1000;/s
+	);
 });
