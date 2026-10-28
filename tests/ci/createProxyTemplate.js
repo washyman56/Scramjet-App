@@ -9,7 +9,7 @@ const CSS_PATH = "packages/create-proxy-app/templates/default/public/index.css";
 function loadTemplate({ navigationError, storage = new Map() } = {}) {
 	const listeners = new Map();
 	const elements = new Map(
-		["sj-form", "sj-address", "sj-search-engine", "sj-frame-wrapper", "sj-frame", "sj-frame-url", "sj-back", "sj-forward", "sj-error", "sj-error-code"].map(
+		["sj-form", "sj-address", "sj-search-engine", "sj-frame-wrapper", "sj-frame", "sj-frame-url", "sj-back", "sj-forward", "sj-reset", "sj-error", "sj-error-code"].map(
 			(id) => [
 				id,
 				{
@@ -22,6 +22,7 @@ function loadTemplate({ navigationError, storage = new Map() } = {}) {
 					addEventListener(type, handler) {
 						listeners.set(`${id}:${type}`, handler);
 					},
+					focus() {},
 				},
 			]
 		)
@@ -94,6 +95,20 @@ test("proxy template routes toolbar buttons to the frame history", async (t) => 
 	t.deepEqual(template.navigationActions, ["back", "forward"]);
 });
 
+test("proxy template reset button restores the home page", async (t) => {
+	const template = loadTemplate();
+	await submit(template, "example.com");
+	template.elements.get("sj-address").value = "example.com";
+	template.elements.get("sj-error").textContent = "connection failed";
+
+	template.listeners.get("sj-reset:click")();
+
+	t.is(template.elements.get("sj-frame").src, "about:blank");
+	t.is(template.elements.get("sj-frame-wrapper").style.display, "none");
+	t.is(template.elements.get("sj-address").value, "");
+	t.is(template.elements.get("sj-error").textContent, "");
+});
+
 test("proxy template supports and saves DuckDuckGo as a search engine", async (t) => {
 	const template = loadTemplate();
 	template.elements.get("sj-search-engine").value =
@@ -133,6 +148,7 @@ test("proxy template keeps its browser frame above the home page", (t) => {
 
 	t.regex(html, /id="sj-back"/);
 	t.regex(html, /id="sj-forward"/);
+	t.regex(html, /id="sj-reset"/);
 	t.regex(
 		css,
 		/#sj-frame-wrapper\s*\{[^}]*position:\s*fixed;[^}]*z-index:\s*1000;/s

@@ -6,6 +6,7 @@ const frameElement = document.getElementById("sj-frame");
 const frameUrl = document.getElementById("sj-frame-url");
 const backButton = document.getElementById("sj-back");
 const forwardButton = document.getElementById("sj-forward");
+const resetButton = document.getElementById("sj-reset");
 const error = document.getElementById("sj-error");
 const errorCode = document.getElementById("sj-error-code");
 
@@ -31,6 +32,15 @@ let frame;
 
 backButton.addEventListener("click", () => frame?.back());
 forwardButton.addEventListener("click", () => frame?.forward());
+resetButton.addEventListener("click", () => {
+	frameElement.src = "about:blank";
+	frameWrapper.style.display = "none";
+	frameUrl.textContent = "";
+	address.value = "";
+	error.textContent = "";
+	errorCode.textContent = "";
+	address.focus();
+});
 
 async function init() {
 	controller = await initBootstrap();
