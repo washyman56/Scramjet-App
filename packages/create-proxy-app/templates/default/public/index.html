@@ -31,12 +31,46 @@
 		<script src="/bootstrap-init.js"></script>
 	</head>
 	<body>
+		<div class="ambient-waves-layer" aria-hidden="true">
+			<div class="ambient-radial-center"></div>
+			<svg class="ambient-wave-svg" viewBox="0 0 1440 600" preserveAspectRatio="none">
+				<defs>
+					<linearGradient id="waveGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+						<stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
+						<stop offset="20%" stop-color="#ffffff" stop-opacity="0.04" />
+						<stop offset="50%" stop-color="#f1f5f9" stop-opacity="0.22" />
+						<stop offset="78%" stop-color="#94a3b8" stop-opacity="0.06" />
+						<stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+					</linearGradient>
+					<linearGradient id="waveGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+						<stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
+						<stop offset="30%" stop-color="#cbd5e1" stop-opacity="0.08" />
+						<stop offset="53%" stop-color="#ffffff" stop-opacity="0.18" />
+						<stop offset="80%" stop-color="#64748b" stop-opacity="0.04" />
+						<stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+					</linearGradient>
+					<filter id="waveBlur1" x="-20%" y="-50%" width="140%" height="200%">
+						<feGaussianBlur stdDeviation="38" />
+					</filter>
+					<filter id="waveBlur2" x="-20%" y="-50%" width="140%" height="200%">
+						<feGaussianBlur stdDeviation="52" />
+					</filter>
+				</defs>
+				<path
+					d="M-100,280 C280,230 520,330 900,270 C1180,220 1380,310 1600,260 L1600,350 C1380,380 1180,310 900,360 C520,410 280,310 -100,360 Z"
+					fill="url(#waveGrad1)" filter="url(#waveBlur1)" />
+				<path
+					d="M-100,310 C320,370 620,240 1020,310 C1280,360 1450,280 1600,320 L1600,380 C1450,350 1280,410 1020,370 C620,310 320,400 -100,370 Z"
+					fill="url(#waveGrad2)" filter="url(#waveBlur2)" />
+			</svg>
+		</div>
+
 		<main class="home-shell">
 			<header class="site-header">
 				<div class="brand">
 					<div class="brand-mark" aria-hidden="true">S</div>
 					<!-- Edit the title below to name your proxy. -->
-					<h1>WashyHub -- Private Browsing</h1>
+					<h1>washyhub's proxy</h1>
 				</div>
 				<div class="nav-status"><span></span>Secure connection</div>
 			</header>
